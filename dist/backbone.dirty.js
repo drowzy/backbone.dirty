@@ -42,7 +42,6 @@
         if (_.contains(methods, method)) {
           options.success = _.wrap(options.success, _.bind(function(oldSuccess, data, textStatus, jqXHR) {
             var ret;
-
             if (oldSuccess) {
               ret = oldSuccess.call(this, data, textStatus, jqXHR);
             }
@@ -75,6 +74,8 @@
       resetDirty: function () {
         this.dirty = false;
         this.changed = {};
+
+        this.trigger('clean', this);
       },
 
       _checkDirty: function (model) {
@@ -94,6 +95,7 @@
           this.trigger('dirty', this);
         }
 
+        return this;
       },
 
       _copyModelAttr: function (newAttrs) {

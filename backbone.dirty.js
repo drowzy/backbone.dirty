@@ -95,6 +95,7 @@
           this.trigger('dirty', this);
         }
 
+        return this;
       },
 
       _copyModelAttr: function (newAttrs) {
